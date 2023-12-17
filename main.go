@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"flag"
+	"fmt"
 	"os"
 )
 
@@ -10,6 +11,11 @@ type inputFile struct {
 	filepath  string
 	separator string
 	pretty    bool
+}
+
+func exitGracefully(err error) {
+	fmt.Fprintf(os.Stderr, "error: %v\n", err)
+	os.Exit(1)
 }
 
 func getFileData() (inputFile, error) {
@@ -30,4 +36,12 @@ func getFileData() (inputFile, error) {
 
 	return inputFile{fileLocation, *separator, *pretty}, nil
 
+}
+
+func main() {
+	fileData, err := getFileData()
+
+	if err != nil {
+		exitGracefully(err)
+	}
 }
