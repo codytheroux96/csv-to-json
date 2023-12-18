@@ -41,3 +41,34 @@ func Test_getFileData(t *testing.T) {
 		})
 	}
 }
+
+func Test_checkIfValidFile(t *testing.T) {
+	tmpfile, err := os.CreateTemp("", "test*.csv")
+	if err != nil {
+		panic(err)
+	}
+	defer os.Remove(tmpfile.Name())
+
+	tests := []struct {
+		name     string
+		filename string
+		want     bool
+		wantErr  bool
+	}{
+		{"File does exist", tmpfile.Name(), true, false},
+		{"File does not exist", "nowhere/test.csv", false, true},
+		{"File is not csv", "test.txt", false, true},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := checkIfValidFile(tt.filename)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("checkIfValidFile() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if got != tt.want {
+				t.Errorf("checkIfValidFile() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
