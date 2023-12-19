@@ -100,8 +100,8 @@ func Test_processCsvFile(t *testing.T) {
 			tmpfile.Sync()
 			testFileData := inputFile{
 				filepath:  tmpfile.Name(),
-				pretty:    false,
 				separator: tt.separator,
+				pretty:    false,
 			}
 
 			writerChannel := make(chan map[string]string)
