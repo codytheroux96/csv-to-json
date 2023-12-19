@@ -6,4 +6,4 @@ func main() {
 	if err != nil {
 		exitGracefully(err)
 	}
-}
+ }
