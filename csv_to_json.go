@@ -31,7 +31,7 @@ func check(e error) {
 
 func getFileData() (inputFile, error) {
 	if len(os.Args) < 2 {
-		return inputFile{}, errors.New("Must provide a filepath argument")
+		return inputFile{}, errors.New("must provide a filepath argument")
 	}
 
 	separator := flag.String("separator", "comma", "Column separator")
@@ -42,7 +42,7 @@ func getFileData() (inputFile, error) {
 	fileLocation := flag.Arg(0)
 
 	if !(*separator == "comma" || *separator == "semicolon") {
-		return inputFile{}, errors.New("Can only use comma or semicolon separators")
+		return inputFile{}, errors.New("can only use comma or semicolon separators")
 	}
 
 	return inputFile{fileLocation, *separator, *pretty}, nil
@@ -51,17 +51,17 @@ func getFileData() (inputFile, error) {
 
 func checkIfValidFile(filename string) (bool, error) {
 	if fileExtenstion := filepath.Ext(filename); fileExtenstion != ".csv" {
-		return false, fmt.Errorf("File %s is not a CSV file", filename)
+		return false, fmt.Errorf("file %s is not a CSV file", filename)
 	}
 	if _, err := os.Stat(filename); err != nil && os.IsNotExist(err) {
-		return false, fmt.Errorf("File %s does not exist!", filename)
+		return false, fmt.Errorf("file %s does not exist", filename)
 	}
 	return true, nil
 }
 
 func processLine(headers []string, dataList []string) (map[string]string, error) {
 	if len(dataList) != len(headers) {
-		return nil, errors.New("Line does not match headers format. Going to skip.")
+		return nil, errors.New("line does not match headers format. Going to skip")
 	}
 	recordMap := make(map[string]string)
 
@@ -149,7 +149,7 @@ func writeJSONFile(csvPath string, writerChannel <-chan map[string]string, done 
 	
 	writeString("["+breakLine, false) 
 	first := true
-	
+
 	for {
 		record, more := <-writerChannel
 
