@@ -12,4 +12,4 @@ This repository is a command line tool I made that takes the contents of a csv f
 ## Pretty JSON
 By default, the JSON this tool generates will not be pretty and it instead will be printed out on one single line. 
 
-If you would like the JSON that is generated to be "pretty", simply run the command 'go run csv_to_json.go --pretty [path to desired csv file]
+If you would like the JSON that is generated to be "pretty", simply run the command 'go run csv_to_json.go --pretty [path to desired csv file]'
