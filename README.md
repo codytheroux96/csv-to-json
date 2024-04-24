@@ -1,7 +1,7 @@
 # CSV to JSON Formatter
 
 ## Description
-This repository is a command line tool I made that takes the contents of a csv file and formats them into JSON. There are also tests that accompany the code written in this repository.
+This repository is a command line tool that takes the contents of a csv file and formats them into JSON.
 
 ## Usage
 - You will need to have Go(Golang) installed on your machine in order to run this program
